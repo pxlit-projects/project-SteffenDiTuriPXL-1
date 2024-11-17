@@ -1,6 +1,6 @@
 # Fullstack Java Project
 
-## Firstname Lastname (Class)
+## Steffen Di Turi (Class)
 Change the name and Class in the title above
 
 ## Folder structure
