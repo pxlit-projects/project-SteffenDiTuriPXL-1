@@ -1,0 +1,115 @@
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  form label {
+    display: block;
+    margin: 10px 0 5px;
+  }
+  
+  form input, form select {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  /* Overall page styling */
+body {
+  font-family: 'Poppins', sans-serif;  /* You can replace this with your preferred font */
+  background-color: #f4f7fb;  /* Light background color */
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styling for the login container */
+.login-container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Soft shadow around the form */
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;  /* Ensures the form isn't too wide on larger screens */
+  box-sizing: border-box;
+}
+
+/* Heading style */
+.login-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form group styling */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Label styling */
+label {
+  display: block;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Input field and select styling */
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #333;
+  box-sizing: border-box;
+}
+
+/* Focus state for input fields */
+input:focus, select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Button styling */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Optional: Add some responsiveness */
+@media (max-width: 500px) {
+  .login-container {
+    padding: 20px;
+  }
+
+  button {
+    padding: 10px;
+  }
+}

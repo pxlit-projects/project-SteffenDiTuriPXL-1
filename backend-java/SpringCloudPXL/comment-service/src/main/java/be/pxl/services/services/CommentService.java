@@ -16,13 +16,13 @@ import java.util.UUID;
 public class CommentService {
 
     private final CommentRepository commentRepository;
-    private final RabbitTemplate rabbitTemplate;
+    //private final RabbitTemplate rabbitTemplate;
 
     private final PostClient postClient;
 
     public CommentService(CommentRepository commentRepository, RabbitTemplate rabbitTemplate, PostClient postClient) {
         this.commentRepository = commentRepository;
-        this.rabbitTemplate = rabbitTemplate;
+        //this.rabbitTemplate = rabbitTemplate;
         this.postClient = postClient;
     }
 
@@ -40,14 +40,14 @@ public class CommentService {
 
         // Create a comment and save it
         Comment commentToSave = Comment.builder()
-                .postId(postId)
+                .postId(Long.valueOf(commentRequest.getPostId()))
                 .description(commentRequest.getDescription())
                 .authorName(commentRequest.getAuthorName())
                 .build();
         Comment savedComment = commentRepository.save(commentToSave);
 
         // Send a message to RabbitMQ to notify PostService for the update
-        rabbitTemplate.convertAndSend("comment.queue", savedComment);
+        //rabbitTemplate.convertAndSend("comment.queue", savedComment);
 
         return savedComment;
     }

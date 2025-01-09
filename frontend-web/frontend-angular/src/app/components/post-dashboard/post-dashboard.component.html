@@ -1,0 +1,19 @@
+<div class="dashboard-container">
+    <h1>Welcome, {{ userName }}!</h1>
+  
+    <div class="filter-container">
+      <input
+        type="text"
+        placeholder="Filter posts"
+        (input)="onFilterChange($event)"
+      />
+    </div>
+  
+    <button (click)="onAddPost()">Add Post</button>
+  
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <div *ngIf="filteredPosts.length === 0" class="no-posts">No posts available.</div>
+  
+    <app-post-list [posts]="filteredPosts"></app-post-list>
+  </div>
+  

@@ -1,0 +1,59 @@
+/* Error Message Style */
+
+.error {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  
+  /* No Posts Message Style */
+  .no-posts {
+    font-size: 1.5rem;
+    color: #555;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  /* Post Card Styles */
+  .post-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .post-card:hover {
+    background-color: #f1f1f1;
+    transform: translateY(-2px);
+  }
+  
+  /* Title Style */
+  .post-title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* Content Style */
+  .post-content {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+  
+  /* Author and Date Style */
+  .post-author, .post-date {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .post-author span, .post-date {
+    font-weight: bold;
+  }
+  
