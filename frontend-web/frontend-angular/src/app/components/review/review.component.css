@@ -1,0 +1,140 @@
+.review-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .error {
+    color: red;
+    background-color: #ffdada;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .no-reviews {
+    text-align: center;
+    color: #888;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .review-card {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .review-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .review-content {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  
+  .review-author,
+  .review-date {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 10px;
+  }
+  
+  .review-author span {
+    font-weight: bold;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    resize: none;
+    background-color: #fafafa;
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+
+  }
+  
+  textarea:focus {
+    border-color: #66afe9;
+    background-color: #fff;
+    outline: none;
+  }
+
+
+  /* Button Styles */
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    border: none;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+    transform: translateY(-2px); /* Slight lift effect */
+  }
+  
+  /* Approve Button */
+  .approve-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+  
+  .approve-btn:hover {
+    background-color: #45a049; /* Darker green for hover */
+  }
+  
+  /* Reject Button */
+  .reject-btn {
+    background-color: #f44336; /* Red */
+    color: white;
+  }
+  
+  .reject-btn:hover {
+    background-color: #e53935; /* Darker red for hover */
+  }
+
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .review-container {
+      padding: 15px;
+    }
+  
+    .review-card {
+      padding: 15px;
+    }
+  
+    button {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+    }
+  }
+  

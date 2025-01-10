@@ -7,12 +7,28 @@ import { Post } from '../models/post.model';
   providedIn: 'root'
 })
 export class PostService {
-  private baseUrl = 'http://localhost:8081/api/post'; // Replace with your API base URL
+  private baseUrl = 'http://localhost:8081/api/post';
 
   constructor(private http: HttpClient) {}
 
+  getAllPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.baseUrl}`);
+  }
+
   getPublishedPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.baseUrl}/published`);
+  }
+
+  getApprovedPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.baseUrl}/approved`);
+  }
+
+  getRejectedPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.baseUrl}/rejected`);
+  }
+
+  getDraftPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.baseUrl}/drafts`);
   }
 
   getPostById(id: number): Observable<Post> {
@@ -23,8 +39,8 @@ export class PostService {
     return this.http.post<Post>(this.baseUrl, post);
   }
 
-  updatePost(id: number, post: Post): Observable<Post> {
-    return this.http.put<Post>(`${this.baseUrl}/${id}`, post);
+  updatePost(post: Post): Observable<Post> {
+    return this.http.put<Post>(`${this.baseUrl}/${post.id}`, post);
   }
 
   deletePost(id: number): Observable<void> {

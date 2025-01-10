@@ -1,0 +1,9 @@
+<nav class="navigation-panel" *ngIf="!isLoginPage()">
+    <ul>
+      <li><button (click)="navigateTo('/')" [class.active]="isActive('/')">Login</button></li>
+      <li><button (click)="navigateTo('/dashboard')" [class.active]="isActive('/dashboard')">Posts</button></li>
+      <li><button (click)="navigateTo('/review')" [class.active]="isActive('/reviews')">Reviews</button></li>
+      <li><button (click)="navigateTo('/draft')" [class.active]="isActive('/drafts')">Drafts</button></li>
+    </ul>
+  </nav>
+  

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post.model';
 import { PostListComponent } from "../post-list/post-list.component";
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { PostService } from '../../services/post.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -28,7 +28,7 @@ export class PostDashboardComponent implements OnInit {
   }
 
   loadPosts(): void {
-    this.postService.getPublishedPosts().subscribe(
+    this.postService.getApprovedPosts().subscribe(
       (posts) => {
         this.posts = posts;
         this.filteredPosts = posts;

@@ -1,0 +1,119 @@
+/* draft-posts.component.css */
+
+/* Loading spinner */
+.loading-spinner {
+    text-align: center;
+    font-size: 1.5em;
+    color: #666;
+    margin-top: 20px;
+  }
+  
+  /* Error message */
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  /* Container for the draft posts */
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Each draft post */
+  li {
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  li:hover {
+    background-color: #f1f1f1;
+  }
+  
+  h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.2em;
+  }
+  
+  /* Section for editing drafts */
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  h3 {
+    font-size: 1.1em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  input,
+  textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  input:focus,
+  textarea:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  
+  /* Button to save draft */
+  button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 150px;
+    align-self: flex-start;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+  button:active {
+    background-color: #1c5980;
+  }
+  
+  /* Styling for small text */
+  strong {
+    font-weight: bold;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    li {
+      padding: 15px;
+    }
+  
+    h3 {
+      font-size: 1.1em;
+    }
+  
+    button {
+      width: 100%;
+    }
+  }
+  

@@ -16,4 +16,8 @@ public class PostDto {
     private boolean draft;
     private boolean approvedStatus;
     private String feedback;
+
+    public boolean isApprovedStatus() {
+        return approvedStatus;
+    }
 }

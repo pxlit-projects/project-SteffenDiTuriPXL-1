@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post.model';
 import { Router } from '@angular/router';
+import { PostService } from '../../services/post.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({

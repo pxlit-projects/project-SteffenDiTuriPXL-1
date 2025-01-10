@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name = "review-service", url = "http://localhost:8081/api/review")
+@FeignClient(name = "review-service", url = "http://localhost:8083/api/review")
 public interface ReviewClient {
 
     @GetMapping

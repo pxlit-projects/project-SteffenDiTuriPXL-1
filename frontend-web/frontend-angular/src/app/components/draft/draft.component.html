@@ -1,0 +1,36 @@
+<div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+</div>
+
+<div *ngIf="!errorMessage">
+    <h2>Draft Posts</h2>
+    <ul>
+        <li *ngFor="let post of draftPosts">
+            <div>
+                <h3>{{ post.title }}</h3>
+                <p><strong>Author:</strong> {{ post.authorName }}</p>
+                <p><strong>Created:</strong> {{ post.createdDate | date }}</p>
+                <p>{{ post.content }}</p>
+            </div>
+            
+            <div>
+                <h3>Edit Draft</h3>
+                <p><strong>Title:</strong></p>
+                <input [(ngModel)]="post.title" placeholder="Title" />
+                <p><strong>Content:</strong></p>
+                <textarea [(ngModel)]="post.content" placeholder="Content"></textarea>
+                <div class="form-group checkbox-group">
+                    <label for="draft">Draft</label>
+                    <input
+                      type="checkbox"
+                      id="draft"
+                      [(ngModel)]="post.draft"
+                      name="draft"
+                      class="form-control-checkbox"
+                    />
+                  </div>
+                <button (click)="saveDraft(post)">Save Draft</button>
+            </div>
+        </li>
+    </ul>
+</div>

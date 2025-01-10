@@ -5,7 +5,6 @@ import be.pxl.services.controller.dto.PostDto;
 import be.pxl.services.controller.dto.PostReviewDto;
 import be.pxl.services.controller.request.PostRequest;
 import be.pxl.services.controller.request.PostUpdateRequest;
-import be.pxl.services.domain.NotificationRequest;
 import be.pxl.services.domain.Post;
 import be.pxl.services.exception.PostException;
 import be.pxl.services.repository.PostRepository;
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,36 +31,30 @@ public class PostService implements IPostService {
 
     @Override
     public List<PostDto> getAllPosts() {
-        return postRepository.findAll()
+        List<PostDto> allPosts = postRepository.findAll()
                 .stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+        return allPosts;
+    }
+
+    public List<PostDto> getApprovedPosts() {
+        return postRepository.findApprovedPostsNative().stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
 
-    public List<PostReviewDto> getReviewedPosts() {
-        List<PostDto> posts = getAllPosts();
-        List<PostReviewDto> reviews = reviewClient.getAllReviews();
-
-        return posts.stream()
-                .map(post -> {
-                    PostReviewDto review = reviews.stream()
-                            .filter(r -> r.getId().equals(post.getId()))
-                            .findFirst()
-                            .orElse(null);
-
-                    return PostReviewDto.builder()
-                            .id(post.getId())
-                            .title(post.getTitle())
-                            .content(post.getContent())
-                            .authorName(post.getAuthorName())
-                            .createdDate(post.getCreatedDate().toString())
-                            .approvedStatus(review != null && review.isApprovedStatus())
-                            .feedback(review != null ? review.getFeedback() : "")
-                            .build();
-                })
+    public List<PostDto> getRejectedPosts() {
+        return postRepository.findRejectedPostsNative().stream()
+                .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
 
+    public List<PostDto> getDraftPosts() {
+        return postRepository.findDraftPosts().stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
 
     @Override
     public void createPost(PostRequest postRequest) {
@@ -109,18 +102,24 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public void updatePost(PostUpdateRequest postUpdateRequest) {
-        Post post = postRepository.findById(Long.valueOf(postUpdateRequest.getId()))
-                .orElseThrow(() -> new IllegalArgumentException("Post with ID " + postUpdateRequest.getId() + " not found."));
+    public void updatePost(Long id, PostUpdateRequest postUpdateRequest) {
+        Optional<Post> existingPost = postRepository.findById(id);
+        if (existingPost.isPresent()) {
+            Post post = existingPost.get();
+            post.setTitle(postUpdateRequest.getTitle());
+            post.setContent(postUpdateRequest.getContent());
+            post.setDraft(postUpdateRequest.isDraft());
+            postRepository.save(post);
 
-        post.setTitle(postUpdateRequest.getTitle());
-        post.setContent(postUpdateRequest.getContent());
-        post.setDraft(postUpdateRequest.isDraft());
-        postRepository.save(post);
-        if (!post.isDraft()) {
-            sendToReview(post.getId());
+            postRepository.save(post);
+            if (!postUpdateRequest.isDraft()) {
+                sendToReview(post.getId());
+            }
+        } else {
+            throw new IllegalArgumentException("Post with ID " + id + " not found.");
         }
     }
+
 
     @Override
     public List<PostDto> filterPosts(String content, String authorName, String startDate, String endDate) {

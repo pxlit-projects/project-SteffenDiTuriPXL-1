@@ -14,6 +14,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/review")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200") // Allow all methods in this controller to be accessed from localhost:4200
 public class ReviewController {
 
     private final ReviewService reviewService;
@@ -29,5 +30,6 @@ public class ReviewController {
         Review updatedReview = reviewService.giveFeedback(id, postReviewDto.isApprovedStatus(), postReviewDto.getFeedback());
         return ResponseEntity.ok(updatedReview);
     }
+
 }
 

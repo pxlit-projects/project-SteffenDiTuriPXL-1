@@ -8,6 +8,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PostListener {
 
@@ -20,7 +22,17 @@ public class PostListener {
 
     @RabbitListener(queues = "review.to.post")
     public void getReviewedPost(PostReviewDto postReviewDto) {
-        Post post = postRepository.findById(postReviewDto.getId()).orElseThrow();
+        Optional<Post> postOpt = postRepository.findById(postReviewDto.getId());
+
+        if (postOpt.isEmpty()) {
+            // Log the error or handle the empty case
+            System.out.println("Post with ID {} not found");
+            // Handle the case where the post is not found (return or throw a custom exception, for instance)
+            return;  // Or you can throw a custom exception if needed
+        }
+
+        Post post = postOpt.get();  // Proceed with the post if it's found
+
         post.setApprovedStatus(postReviewDto.isApprovedStatus());
         post.setFeedback(postReviewDto.getFeedback());
         postRepository.save(post);

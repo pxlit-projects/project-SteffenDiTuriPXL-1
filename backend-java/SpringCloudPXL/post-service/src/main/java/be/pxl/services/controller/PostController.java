@@ -32,16 +32,28 @@ public class PostController {
         return new ResponseEntity<>(publishedPosts, HttpStatus.OK);
     }
 
-    @GetMapping("/reviewed")
-    public ResponseEntity<List<PostReviewDto>> getReviewedPosts() {
-        List<PostReviewDto> reviewedPosts = postService.getReviewedPosts();
+    @GetMapping("/approved")
+    public ResponseEntity<List<PostDto>> getApprovedPosts() {
+        List<PostDto> reviewedPosts = postService.getApprovedPosts();
         return new ResponseEntity<>(reviewedPosts, HttpStatus.OK);
+    }
+
+    @GetMapping("/rejected")
+    public ResponseEntity<List<PostDto>> getRejectedPosts() {
+        List<PostDto> reviewedPosts = postService.getRejectedPosts();
+        return new ResponseEntity<>(reviewedPosts, HttpStatus.OK);
+    }
+
+    @GetMapping("/drafts")
+    public ResponseEntity<List<PostDto>> getDraftPosts() {
+        List<PostDto> draftPosts = postService.getDraftPosts();
+        return new ResponseEntity<>(draftPosts, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<String> createPost(@RequestBody PostRequest postRequest) {
         postService.createPost(postRequest);
-        return new ResponseEntity<>("Post created successfully!", HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
@@ -55,14 +67,15 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updatePost(@RequestBody PostUpdateRequest postUpdateRequest) {
+    public ResponseEntity<String> updatePost(@PathVariable Long id, @RequestBody PostUpdateRequest postUpdateRequest) {
         try {
-            postService.updatePost(postUpdateRequest);
+            postService.updatePost(id, postUpdateRequest); // Pass the ID directly to the service
             return new ResponseEntity<>("Post updated successfully!", HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
 
     @GetMapping("/filter")
     public ResponseEntity<List<PostDto>> filterPosts(

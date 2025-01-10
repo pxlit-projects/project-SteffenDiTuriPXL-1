@@ -1,0 +1,124 @@
+/* General container styles */
+.add-post-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header styling */
+  .add-post-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Error and success messages */
+  .error {
+    color: #d9534f;
+    background-color: #f2dede;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .success {
+    color: #5cb85c;
+    background-color: #dff0d8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Form styling */
+  form .form-group {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  /* Label styling */
+  form .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+  }
+  
+  /* Input and textarea styling */
+  form .form-group input[type="text"],
+  form .form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    background: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+  
+}
+  
+  /* Input focus effect */
+  form .form-group input[type="text"]:focus,
+  form .form-group textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+  }
+  
+  /* Textarea adjustments */
+  form .form-group textarea {
+    resize: none;
+    height: 100px;
+    box-sizing: border-box;
+  }
+  
+  /* Checkbox group */
+  form .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Button styling */
+  form .submit-btn {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  form .submit-btn:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Input error state */
+  form .form-group input[type="text"].error,
+  form .form-group textarea.error {
+    border-color: #d9534f;
+    background-color: #f2dede;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .add-post-container {
+      padding: 15px;
+    }
+  
+    form .submit-btn {
+      font-size: 14px;
+    }
+  }
+  
