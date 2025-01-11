@@ -16,6 +16,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/comment")
+@CrossOrigin(origins = "http://localhost:4200")  // Allow requests from Angular on port 4200
 public class CommentController {
 
     private final CommentService commentService;
@@ -25,8 +26,18 @@ public class CommentController {
     }
 
     @GetMapping
-    public List<CommentDto> getComments(@RequestBody String postId) {
+    public List<CommentDto> getAllComments() {
+        return commentService.getAllComments();
+    }
+
+    @GetMapping("{postId}")
+    public List<CommentDto> getComments(@PathVariable String postId) {
         return commentService.getCommentsByPostId(Long.valueOf(postId));
+    }
+
+    @GetMapping("get/{commentId}")
+    public CommentDto getCommentById(@PathVariable String commentId) {
+        return commentService.getCommentById(Long.valueOf(commentId));
     }
 
     @DeleteMapping("/delete/{id}")

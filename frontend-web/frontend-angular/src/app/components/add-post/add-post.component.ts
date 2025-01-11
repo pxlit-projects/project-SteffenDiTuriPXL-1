@@ -30,6 +30,7 @@ export class AddPostComponent {
 
   onSubmit(): void {
     const newPost: Post = {
+      id: 0,
       title: this.title,
       content: this.content,
       authorName: this.authorName, 

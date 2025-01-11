@@ -16,15 +16,23 @@ import { AuthService } from '../../services/auth.service';
 export class PostDashboardComponent implements OnInit {
   posts: Post[] = [];
   filteredPosts: Post[] = [];
-  userName: string = ''; // This can be dynamic based on your login/authentication logic
+  userName: string = ''; 
   errorMessage: string = '';
   filterQuery: string = '';
+  postIds: number[] = [];  // Add this new property
+  currentUser: { username: string; role: string } | null = null;
+
 
   constructor(private postService: PostService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loadPosts();
-    this.userName = this.authService.getUser()?.username ?? 'Unknown';
+    this.currentUser = this.authService.getUser();
+  }
+
+  setFilteredPosts(posts: Post[]) {
+    this.filteredPosts = posts;
+    this.postIds = posts.map(post => post.id).filter(id => id !== undefined) as number[];
   }
 
   loadPosts(): void {

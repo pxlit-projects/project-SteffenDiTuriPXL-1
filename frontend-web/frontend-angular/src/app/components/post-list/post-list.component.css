@@ -57,3 +57,163 @@
     font-weight: bold;
   }
   
+  /* Add Comment Section Style */
+.add-comment-section {
+  margin-top: 20px;
+}
+
+.add-comment-section textarea {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: none;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  box-sizing: border-box; /* Ensures padding doesn't affect the width */
+
+}
+
+.add-comment-section button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-comment-section button:hover {
+  background-color: #0056b3;
+}
+
+/* Comments Section Style */
+.comments-section {
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.comments-section h3 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.comments-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comments-section li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.comments-section li p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+.comments-section li p strong {
+  color: #333;
+}
+
+/* Edit and Delete Buttons */
+.comments-section li button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease;
+}
+
+.comments-section li button:hover {
+  background-color: #d32f2f;
+}
+
+.comments-section li button:first-child {
+  background-color: #4caf50;
+}
+
+.comments-section li button:first-child:hover {
+  background-color: #388e3c;
+}
+
+/* Post ID Style */
+.post-id {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* General Button Styles */
+button {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Edit Button */
+button.edit-button {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
+button.edit-button:hover {
+  background-color: #45a049;
+}
+
+/* Delete Button */
+button.delete-button {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+button.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+/* Admin Controls Container */
+.admin-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Add Comment Section */
+.add-comment-section textarea {
+  width: 100%;
+  height: 60px;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-comment-section button {
+  background-color: #007bff; /* Blue */
+  color: white;
+}
+
+.add-comment-section button:hover {
+  background-color: #0056b3;
+}

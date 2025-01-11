@@ -1,19 +1,23 @@
 <div class="dashboard-container">
-    <h1>Welcome, {{ userName }}!</h1>
+  <h1>Welcome, {{ currentUser?.username }}!</h1>
   
-    <div class="filter-container">
-      <input
-        type="text"
-        placeholder="Filter posts"
-        (input)="onFilterChange($event)"
-      />
-    </div>
-  
-    <button (click)="onAddPost()">Add Post</button>
-  
-    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-    <div *ngIf="filteredPosts.length === 0" class="no-posts">No posts available.</div>
-  
-    <app-post-list [posts]="filteredPosts"></app-post-list>
+  <div class="filter-container">
+    <input
+      type="text"
+      placeholder="Filter posts"
+      (input)="onFilterChange($event)"
+    />
   </div>
   
+  <div *ngIf="currentUser?.role === 'admin'" class="add-comment-section">
+    <button (click)="onAddPost()">Add Post</button>
+  </div>
+
+  
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  <div *ngIf="filteredPosts.length === 0" class="no-posts">No posts available.</div>
+  
+  <app-post-list 
+    [posts]="filteredPosts"
+  ></app-post-list>
+</div>

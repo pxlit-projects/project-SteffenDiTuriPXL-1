@@ -1,0 +1,26 @@
+<div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+  
+  <div *ngIf="successMessage" class="success-message">
+    <p>{{ successMessage }}</p>
+  </div>
+  
+  <div *ngIf="comment">
+    <h2>Edit Draft</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          id="description"
+          [(ngModel)]="comment.description"
+          name="description"
+          required
+          class="form-control"
+        />
+      </div>
+      <button type="submit" class="submit-btn">Update Draft</button>
+    </form>
+  </div>
+  

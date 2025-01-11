@@ -5,7 +5,7 @@ import { AddPostComponent } from './components/add-post/add-post.component';
 import { PostDashboardComponent } from './components/post-dashboard/post-dashboard.component';
 import { ReviewComponent } from './components/review/review.component';
 import { DraftComponent } from './components/draft/draft.component';
-import { EditDraftComponent } from './components/edit-draft/edit-draft.component';
+import { EditCommentComponent } from './components/edit-comment/edit-comment.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -13,8 +13,7 @@ export const routes: Routes = [
   { path: 'add-post', component: AddPostComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'draft', component: DraftComponent},
-  { path: 'edit-draft/:id', component: EditDraftComponent },
-
+  { path: 'edit-comment/:commentId', component: EditCommentComponent }
 ];
 
 @NgModule({

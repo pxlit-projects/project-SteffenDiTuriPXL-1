@@ -1,5 +1,5 @@
 export interface Post {
-    id?: number;           // Optional because the id is assigned after creation
+    id: number;           // Optional because the id is assigned after creation
     title: string;
     content: string;
     authorName?: string;   // Optional, if not provided, can be null

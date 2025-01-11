@@ -11,6 +11,7 @@ import be.pxl.services.clients.PostClient;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
@@ -58,9 +59,39 @@ public class CommentService {
     }
 
     public void updateComment(CommentUpdateRequest commentUpdateRequest) {
-        Long commentId = Long.valueOf(commentUpdateRequest.getId());
-        Comment commentToUpdate = commentRepository.findById(commentId).orElseThrow();
+        String id = commentUpdateRequest.getId();
+        if (id == null || id.isEmpty()) {
+            throw new IllegalArgumentException("Comment ID cannot be null or empty");
+        }
+
+        Long commentId = Long.valueOf(id);  // Now it is safe to parse
+
+        // Proceed with finding and updating the comment
+        Comment commentToUpdate = commentRepository.findById(commentId)
+                .orElseThrow(() -> new be.pxl.services.exceptions.CommentNotFoundException("Comment not found with ID: " + commentId));
+
         commentToUpdate.setDescription(commentUpdateRequest.getDescription());
         commentRepository.save(commentToUpdate);
+    }
+
+
+    public CommentDto getCommentById(Long commentId) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new IllegalArgumentException("Comment not found with id " + commentId));
+        return mapToDto(comment);
+    }
+
+    public List<CommentDto> getAllComments() {
+        List<Comment> comments = commentRepository.findAll();
+        return comments.stream().map(this::mapToDto).collect(Collectors.toList());
+    }
+
+    private CommentDto mapToDto(Comment comment) {
+        CommentDto dto = new CommentDto();
+        dto.setId(String.valueOf(comment.getId()));
+        dto.setPostId(String.valueOf(comment.getPostId()));
+        dto.setDescription(comment.getDescription());
+        dto.setAuthorName(comment.getAuthorName());
+        return dto;
     }
 }
