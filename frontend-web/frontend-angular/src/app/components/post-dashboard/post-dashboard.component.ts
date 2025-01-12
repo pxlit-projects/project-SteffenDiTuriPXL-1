@@ -54,16 +54,39 @@ export class PostDashboardComponent implements OnInit {
 
   filterPosts(): void {
     if (this.filterQuery) {
-      this.filteredPosts = this.posts.filter(post =>
-        post.title.toLowerCase().includes(this.filterQuery.toLowerCase()) ||
-        post.content.toLowerCase().includes(this.filterQuery.toLowerCase())
-      );
+      const query = this.filterQuery.toLowerCase(); // Normalize the query to lowercase for comparison
+      this.filteredPosts = this.posts.filter(post => {
+        const dateString = post.createdDate
+          ? new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric' }).format(new Date(post.createdDate))
+          : ''; // Format the date as "January 12"
+        
+        return (
+          post.title.toLowerCase().includes(query) ||
+          post.content.toLowerCase().includes(query) ||
+          post.authorName?.toLowerCase().includes(query) ||
+          dateString.toLowerCase().includes(query) // Check against the formatted date
+        );
+      });
     } else {
       this.filteredPosts = this.posts;
     }
   }
+  
 
-  // You will call this method when the user clicks the "Add Post" button
+  /* filterPosts(): void {
+    if (this.filterQuery) {
+      this.filteredPosts = this.posts.filter(post =>
+        post.title.toLowerCase().includes(this.filterQuery.toLowerCase()) ||
+        post.content.toLowerCase().includes(this.filterQuery.toLowerCase()) ||
+        post.authorName?.toLowerCase().includes(this.filterQuery.toLowerCase())
+        || post.createdDate?.toDateString().includes(this.filterQuery.toLowerCase())
+        
+      );
+    } else {
+      this.filteredPosts = this.posts;
+    }
+  } */
+
   onAddPost(): void {
     this.router.navigate(['/add-post']);
   }
