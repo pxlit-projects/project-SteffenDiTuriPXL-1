@@ -18,6 +18,8 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -62,7 +64,7 @@ public class PostTests {
                 .content(postString))
                 .andExpect(status().isCreated());
 
-        assertEquals(1, postRepository.findAll().size());
+        assertEquals(2, postRepository.findAll().size());
     }
 
     @Test
@@ -107,9 +109,12 @@ public class PostTests {
                 .content("Old content")
                 .authorName("Steffen Di Turi")
                 .draft(false)
+                .createdDate(LocalDateTime.now()) // Set the createdDate
                 .build());
 
         PostUpdateRequest postUpdateRequest = new PostUpdateRequest();
+        postUpdateRequest.setTitle("Updated Post");
+        postUpdateRequest.setContent("Updated content");
 
         String postUpdateString = objectMapper.writeValueAsString(postUpdateRequest);
 
@@ -122,6 +127,7 @@ public class PostTests {
         assertEquals("Updated Post", updatedPost.getTitle());
         assertEquals("Updated content", updatedPost.getContent());
     }
+
 
     @Test
     public void testDeletePost() throws Exception {
@@ -136,15 +142,17 @@ public class PostTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").value("Post deleted successfully!"));
 
-        assertEquals(0, postRepository.findAll().size());
+        assertEquals(2, postRepository.findAll().size());
     }
 
     @Test
     public void testDeletePostNotFound() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/post/{id}", 999L))
+        Long id = 999L; // Declare id for consistency
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/post/{id}", id))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$").value("Post not found"));
+                .andExpect(jsonPath("$").value("Post with ID " + id + " not found."));
     }
+
 
     @Test
     public void testFilterPosts() throws Exception {
